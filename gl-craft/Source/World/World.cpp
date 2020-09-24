@@ -5,12 +5,17 @@
 World::World()
 	: m_generator(0, 0)
 {
-	//m_generator.GenerateHeightMap();
 	m_chunkManager.LoadHeightMap( m_generator.GetHeightMap() );
 
 	for (int i = 0; i < WORLD_SIZE / CHUNK_SIZE; i++)
 	for (int j = 0; j < WORLD_SIZE / CHUNK_SIZE; j++)
 	{
+		if (!((i * CHUNK_SIZE) % m_generator.GetGridSize()) && !((j * CHUNK_SIZE) % m_generator.GetGridSize()))
+		{
+			m_generator.GenerateHeightMap(i * CHUNK_SIZE, j * CHUNK_SIZE);
+			m_chunkManager.LoadHeightMap( m_generator.GetHeightMap() );
+		}
+
 		m_chunkManager.CreateChunk(glm::vec3(i * CHUNK_SIZE, 0.0f, j * CHUNK_SIZE));
 	}
 	
