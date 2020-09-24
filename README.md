@@ -1,6 +1,5 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/dwarzecha/gl-craft)
 [![CodeFactor](https://www.codefactor.io/repository/github/dwarzecha/gl-craft/badge)](https://www.codefactor.io/repository/github/dwarzecha/gl-craft)
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 # gl-craft
 
