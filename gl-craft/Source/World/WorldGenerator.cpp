@@ -48,7 +48,6 @@ WorldGenerator::WorldGenerator(int x, int y)
 
 void WorldGenerator::GenerateHeightMap(int x, int y)
 {
-	
 }
 
 std::map<Perlin::Vector2D, double> WorldGenerator::GetHeightMap()

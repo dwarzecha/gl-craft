@@ -16,7 +16,7 @@ void ChunkManager::CreateChunk(glm::vec3 pos)
 	for (int i = 0; i < CHUNK_SIZE; i++)
 	for (int j = 0; j < CHUNK_SIZE; j++)
 	{
-		tempHeightMap.push_back( m_heightMap.at( Perlin::Vector2D(pos.x + i, pos.y + j) ));
+		tempHeightMap.push_back( m_heightMap.at( Perlin::Vector2D(pos.x + i, pos.z + j) ));
 	}
 
 	std::shared_ptr<Chunk> temp = std::make_shared<Chunk>(pos);
