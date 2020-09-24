@@ -1,0 +1,7 @@
+Infinite world generation -> WORLD_SIZE a variable, minus coordinates?, heightmap generation on the fly
+	Change the way coords are processed in ChunkManager and World
+
+Collision detection
+Optimization
+
+Find a method to iterate througt directions -> refactor UpdateModel
