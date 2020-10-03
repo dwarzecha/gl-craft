@@ -1,4 +1,7 @@
+PRIORITY:
 Infinite world generation -> Make it really infinite
+
+
 Exception when terminating a thread ??
 
 Collision detection
