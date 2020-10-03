@@ -12,19 +12,21 @@ class ChunkSection : public NonCopyable
 public:
 	ChunkSection(glm::vec3 pos);
 
-	void AddBlock(const Block& block);
+	void AddBlock(std::shared_ptr<Block> block);
 
-	void LoadSurrounding(const std::vector<Block>* surroundingBlocks, int dirIter);
+	void LoadSurrounding(const std::vector<std::shared_ptr<Block> >* surroundingBlocks, int dirIter);
 
 	void CreateModel();
 	void Bind();
 
 	glm::vec3 GetPos();
-	Block GetBlock(glm::vec3 pos) const;
+	std::shared_ptr<Block> GetBlock(glm::vec3 pos) const;
 	std::vector<std::unique_ptr<BlockFace> >* GetFaces();
-	const std::vector<Block>* GetBlocks() const;
+	const std::vector<std::shared_ptr<Block> >* GetBlocks() const;
 
 	void SetBlock(glm::vec3 pos, BlockID id);
+
+	int OnBorder() const;
 
 private:
 	glm::vec3 ChunkToSectionCoords(glm::vec3 pos) const;

@@ -2,6 +2,7 @@
 #define CHUNKPOPULATOR_HPP_INCLUDED
 
 #include "ChunkSection.hpp"
+#include "../../Direction/Direction.hpp"
 
 class ChunkPopulator
 {
@@ -9,6 +10,10 @@ public:
 	ChunkPopulator(std::vector<std::shared_ptr<ChunkSection> >* sections);
 	void LoadData(std::vector<double> heightMap);
 	void Populate();
+
+	int GetChunkHeight(int maxOrMin) const;
+	int GetChunkSectionHeight(glm::vec3 pos, int maxOrMin) const;
+	int GetChunkBorderHeight(DirIter dirIter, int maxOrMin) const;
 
 private:
 	std::vector<double> m_heightMap;

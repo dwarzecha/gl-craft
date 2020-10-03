@@ -1,5 +1,7 @@
 #include "ChunkManager.hpp"
 
+
+
 #include"WorldConstants.hpp"
 #include "../Direction/Direction.hpp"
 #include "Block/Block.hpp"
@@ -9,7 +11,7 @@ void ChunkManager::LoadHeightMap(std::map<Perlin::Vector2D, double> heightMap)
 	m_heightMap = heightMap;
 }
 
-void ChunkManager::CreateChunk(glm::vec3 pos)
+void ChunkManager::CreateChunk(glm::vec3 pos, std::mutex* mutex)
 {
 	std::vector<double> tempHeightMap;
 
@@ -21,38 +23,51 @@ void ChunkManager::CreateChunk(glm::vec3 pos)
 
 	std::shared_ptr<Chunk> temp = std::make_shared<Chunk>(pos);
 	temp->Populate(tempHeightMap);
-
+	
+	std::unique_lock<std::mutex> lock(*mutex);
 	m_chunks.push_back(temp);
+	lock.unlock();
 }
 
 void ChunkManager::GenModels()
 {
+	//std::lock_guard<std::mutex> guard(m_chunkMutex);
 	for (auto chunk : m_chunks)
 	{
-		for (int i = 0; i < 6; i++)
-		{
-			std::vector<std::shared_ptr<ChunkSection> > adjacentChunkSections;
+		int surroundingChunksCounter = 0;
 
-			for (int i = 0; i < (CHUNK_HEIGHT * CHUNK_SIZE * CHUNK_SIZE) / (SECTION_SIZE * SECTION_SIZE * SECTION_SIZE); i++)
+		if (!chunk->hasModel)
+		{
+			for (int i = 0; i < 6; i++)
 			{
-				adjacentChunkSections.push_back(nullptr);
+				int secondChunkIndex = GetChunkIndex(chunk->GetPos() + Direction::directions.at(i) * static_cast<float>(CHUNK_SIZE));
+
+				if (secondChunkIndex != -1)
+				{
+					std::shared_ptr<Chunk> adjacentChunk = m_chunks.at(secondChunkIndex);
+
+					if (!chunk->HasSurroundingLoadedAt(i)) chunk->LoadSurrounding(adjacentChunk, i);
+					if (!adjacentChunk->HasSurroundingLoadedAt(Direction::Reverse(i))) adjacentChunk->LoadSurrounding(chunk, Direction::Reverse(i));
+					surroundingChunksCounter++;
+				}
+				else
+				{
+					chunk->LoadSurrounding(nullptr, i);
+				}
 			}
 
-			int secondChunkIndex = GetChunkIndex(chunk->GetPos() + Direction::directions.at(i) * static_cast<float>(CHUNK_SIZE));
-
-			if (secondChunkIndex != -1)
-				adjacentChunkSections = m_chunks.at(secondChunkIndex)->GetSections();
-
-			chunk->LoadSurrounding(adjacentChunkSections, i);
+			if (surroundingChunksCounter == 4)
+				chunk->CreateModel(/*surroundingChunks*/);
 		}
-		
-		chunk->CreateModel();
 	}
 }
 
 void ChunkManager::UpdateModels(glm::vec3 pos)
 {
 	glm::vec3 chunkPos = glm::vec3(static_cast<int>(pos.x) % CHUNK_SIZE, pos.y, static_cast<int>(pos.z) % CHUNK_SIZE);
+	if (chunkPos.x < 0.0f) chunkPos.x += CHUNK_SIZE;
+	if (chunkPos.z < 0.0f) chunkPos.z += CHUNK_SIZE;
+
 	glm::vec3 chunkCoords = GetChunkCoords(pos);
 
 	if (chunkPos.x == 0.0f/* && pos.x != 0.0f*/)
@@ -90,23 +105,28 @@ void ChunkManager::UpdateModels(glm::vec3 pos)
 	m_chunks.at( GetChunkIndex( GetChunkCoords(pos) ) )->UpdateModel(pos);
 }
 
-Block ChunkManager::GetBlock(glm::vec3 pos)
+std::shared_ptr<Block> ChunkManager::GetBlock(glm::vec3 pos)
 {
 	return m_chunks.at( GetChunkIndex( GetChunkCoords(pos) ) )->GetBlock(pos);
 }
 
-const std::vector<std::shared_ptr<Chunk> >* ChunkManager::GetChunks() const
+const std::vector<std::shared_ptr<Chunk> >* ChunkManager::GetChunks()
 {
+	//std::lock_guard<std::mutex> guard(m_chunkMutex);
 	return &m_chunks;
 }
 
 void ChunkManager::SetBlock(glm::vec3 pos, BlockID id)
 {
-	m_chunks.at( GetChunkIndex( GetChunkCoords(pos) ) )->SetBlock(pos, id);
+	int index = GetChunkIndex(GetChunkCoords(pos));
+	if (index != -1) m_chunks.at( index )->SetBlock(pos, id);
 }
 
 bool ChunkManager::OutOfBounds(glm::vec3 pos)
 {
+	if (pos.y < 0.0f) return true;
+	if (pos.y > WORLD_HEIGHT) return true;
+
 	bool outOfBounds = true;
 
 	if (GetChunkIndex(GetChunkCoords(pos)) != -1)
@@ -115,6 +135,16 @@ bool ChunkManager::OutOfBounds(glm::vec3 pos)
 	}
 
 	return outOfBounds;
+}
+
+bool ChunkManager::ChunkWasAdded()
+{
+	//std::unique_lock<std::mutex> lock(*mutex);
+	int retVal = m_chunks.size() - m_prevChunksCount;
+	m_prevChunksCount = m_chunks.size();
+	//lock.unlock();
+
+	return retVal;
 }
 
 int ChunkManager::GetChunkIndex(glm::vec3 pos) const
@@ -142,7 +172,16 @@ int ChunkManager::GetChunkIndex(glm::vec3 pos) const
 
 glm::vec3 ChunkManager::GetChunkCoords(glm::vec3 pos) const
 {
+	if (pos.x < 0.0f) pos.x -= (CHUNK_SIZE - 1);
+	if (pos.z < 0.0f) pos.z -= (CHUNK_SIZE - 1);
+	
 	return glm::vec3( static_cast<int>(pos.x / CHUNK_SIZE)
 					  * CHUNK_SIZE, 0.0f, static_cast<int>(pos.z / CHUNK_SIZE)
 					  * CHUNK_SIZE );
+}
+
+inline int ChunkManager::ZeroStepFunc(int num)
+{
+	if (num <= 0) return 0;
+	else return num;
 }

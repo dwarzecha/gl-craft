@@ -1,7 +1,6 @@
-Infinite world generation -> WORLD_SIZE a variable, minus coordinates?, heightmap generation on the fly
-	Change the way coords are processed in ChunkManager and World
+Infinite world generation -> Make it really infinite
+Exception when terminating a thread ??
 
 Collision detection
-Optimization
 
-Find a method to iterate througt directions -> refactor UpdateModel
+Find a method to iterate through directions -> refactor the world generation system ??

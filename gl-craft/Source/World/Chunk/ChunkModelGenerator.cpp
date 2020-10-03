@@ -11,7 +11,7 @@ ChunkModelGenerator::ChunkModelGenerator()
 	m_surroundingBlocks.resize(6);
 }
 
-void ChunkModelGenerator::LoadSurrounding(const std::vector<Block>* surroundingBlocks, int dirIter)
+void ChunkModelGenerator::LoadSurrounding(const std::vector<std::shared_ptr<Block> >* surroundingBlocks, int dirIter)
 {
 	m_surroundingBlocks.at(dirIter) = surroundingBlocks;
 }
@@ -41,12 +41,12 @@ std::unique_ptr<Model> ChunkModelGenerator::GenerateModel()
 	return std::move(tempModel);
 }
 
-void ChunkModelGenerator::AddBlock(const Block& block)
+void ChunkModelGenerator::AddBlock(std::shared_ptr<Block> block)
 {
-		m_blocks.push_back(block);
+	m_blocks.push_back(block);
 }
 
-Block ChunkModelGenerator::GetBlock(glm::vec3 pos) const
+std::shared_ptr<Block> ChunkModelGenerator::GetBlock(glm::vec3 pos) const
 {
 	return m_blocks.at(GetIndex(pos));
 }
@@ -57,16 +57,16 @@ void ChunkModelGenerator::CreateFaces()
 
 	for (auto block : m_blocks)
 	{
-		if (block.GetOpacity() > 0.0f)
+		if (block != nullptr && block->GetOpacity() > 0.0f)
 		{
 			for (int j = 0; j < 6; j++)
 			{
 				if (CheckBlock(block, j))
 				{
-					AddFaceToMesh(BlockMesh::faces.at(j), block.GetPos());
+					AddFaceToMesh(BlockMesh::faces.at(j), block->GetPos());
 					m_faces.back()->m_side = static_cast<FaceID>(j);
 					m_faces.back()->m_texture
-					.LoadFromFile( TexturePaths::paths.at( static_cast<int>(block.GetID()) ).at(j) );
+					.LoadFromFile( TexturePaths::paths.at( static_cast<int>(block->GetID()) ).at(j) );
 				}
 			}
 		}
@@ -78,14 +78,14 @@ int ChunkModelGenerator::GetIndex(glm::vec3 pos) const
 	return (pos.x) * m_size * m_size + (pos.y) * m_size + (pos.z);
 }
 
-bool ChunkModelGenerator::CheckBlock(const Block& b, int dirIter)
+bool ChunkModelGenerator::CheckBlock(std::shared_ptr<Block> b, int dirIter)
 {
 	glm::vec3 dir = Direction::directions.at(dirIter);
-	glm::vec3 pos = b.GetPos();
+	glm::vec3 pos = b->GetPos();
 
 	if (OutOfBounds(pos + dir))
 	{
-		const std::vector<Block>* blocks = m_surroundingBlocks.at(dirIter);
+		const std::vector<std::shared_ptr<Block> >* blocks = m_surroundingBlocks.at(dirIter);
 
 		if ((pos + dir).x < 0.0f) pos.x = m_size - 1.0f;
 		if ((pos + dir).y < 0.0f) pos.y = m_size - 1.0f;
@@ -95,8 +95,13 @@ bool ChunkModelGenerator::CheckBlock(const Block& b, int dirIter)
 		if ((pos + dir).y > static_cast<float>(m_size) - 1.0f) pos.y = 0.0f;
 		if ((pos + dir).z > static_cast<float>(m_size) - 1.0f) pos.z = 0.0f;
 
+		//if (blocks == nullptr && dirIter != 4)
+		//{
+		//	return false;
+		//}
+
 		if (blocks == nullptr ||
-			blocks->at(GetIndex(pos)).GetOpacity() != 1.0f)
+			(blocks->at(GetIndex(pos)) == nullptr || blocks->at(GetIndex(pos))->GetOpacity() != 1.0f))
 		{
 			return true;
 		}
@@ -104,7 +109,7 @@ bool ChunkModelGenerator::CheckBlock(const Block& b, int dirIter)
 		return false;
 	}
 
-	if (m_blocks.at(GetIndex(pos + dir)).GetOpacity() != 1.0f) return true;
+	if (m_blocks.at(GetIndex(pos + dir)) == nullptr || m_blocks.at(GetIndex(pos + dir))->GetOpacity() != 1.0f) return true;
 
 	return false;
 }
@@ -142,14 +147,15 @@ std::vector<std::unique_ptr<BlockFace> >* ChunkModelGenerator::GetFaces()
 	return &m_faces;
 }
 
-const std::vector<Block>* ChunkModelGenerator::GetBlocks() const
+const std::vector<std::shared_ptr<Block> >* ChunkModelGenerator::GetBlocks() const
 {
 	return &m_blocks;
 }
 
 void ChunkModelGenerator::SetBlock(glm::vec3 pos, BlockID id)
 {
-	m_blocks.at(GetIndex(pos)).SetID(id);
+	if (id == BlockID::Air) m_blocks.at(GetIndex(pos)) = nullptr;
+	else m_blocks.at(GetIndex(pos))->SetID(id);
 }
 
 void ChunkModelGenerator::SetSize(int size)

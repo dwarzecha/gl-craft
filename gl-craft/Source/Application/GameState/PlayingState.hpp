@@ -2,6 +2,9 @@
 #define PLAYINGSTATE_HPP_INCLUDED
 
 #include <vector>
+#include <thread>
+#include <mutex>
+#include <memory>
 
 #include "GameState.hpp"
 #include "StateManager.hpp"
@@ -26,6 +29,9 @@ public:
 	void ChangeState();
 
 private:
+	std::unique_ptr<std::thread> chunkThread;
+	std::mutex chunkMutex;
+
 	Player m_player;
 	Camera m_camera;
 

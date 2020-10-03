@@ -14,15 +14,15 @@ class ChunkModelGenerator : public NonCopyable
 public:
 	ChunkModelGenerator();
 
-	void LoadSurrounding(const std::vector<Block>* surroundingBlocks, int dirIter);
+	void LoadSurrounding(const std::vector<std::shared_ptr<Block> >* surroundingBlocks, int dirIter);
 
 	std::unique_ptr<Model> GenerateModel();
 
-	void AddBlock(const Block& block);
+	void AddBlock(std::shared_ptr<Block> block);
 
 	std::vector<std::unique_ptr<BlockFace> >* GetFaces();
-	const std::vector<Block>* GetBlocks() const;
-	Block GetBlock(glm::vec3 pos) const;
+	const std::vector<std::shared_ptr<Block> >* GetBlocks() const;
+	std::shared_ptr<Block> GetBlock(glm::vec3 pos) const;
 
 	void SetBlock(glm::vec3 pos, BlockID id);
 	void SetSize(int size);
@@ -31,14 +31,14 @@ private:
 	void CreateFaces();
 	
 	int GetIndex(glm::vec3 pos) const;
-	bool CheckBlock(const Block& b, int dirIter);
+	bool CheckBlock(std::shared_ptr<Block> b, int dirIter);
 	bool OutOfBounds(glm::vec3 pos);
 	void AddFaceToMesh(std::vector<float> face, glm::vec3 pos);
 
 	std::vector<std::unique_ptr<BlockFace> > m_faces;
-	std::vector<Block> m_blocks;
+	std::vector<std::shared_ptr<Block> > m_blocks;
 
-	std::vector<const std::vector<Block>* > m_surroundingBlocks;
+	std::vector<const std::vector<std::shared_ptr<Block> >* > m_surroundingBlocks;
 
 	int m_size;
 };

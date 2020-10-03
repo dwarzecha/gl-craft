@@ -1,11 +1,18 @@
 #include "Chunk.hpp"
 
+#include <algorithm>
+
 #include "../WorldConstants.hpp"
 #include "../../Direction/Direction.hpp"
 
 Chunk::Chunk(glm::vec3 pos)
 	: m_pos(pos), m_populator(&m_sections)
 {
+	for (int i = 0; i < 6; i++)
+	{
+		m_surroundingChunks.push_back(nullptr);
+	}
+
 	MakeSections();
 }
 
@@ -19,12 +26,38 @@ void Chunk::CreateModel()
 {
 	for (auto& section : m_sections)
 	{
-		if (section != nullptr) section->CreateModel();
+		if (section != nullptr)
+		{
+			int borderDir = section->OnBorder();
+
+			if (borderDir == -1)
+			{
+				if (section->GetPos().y >= GetMinHeight() - SECTION_SIZE && section->GetPos().y <= GetMaxHeight()) section->CreateModel();
+			}
+			else
+			{
+				std::shared_ptr<Chunk> adjacentChunk = m_surroundingChunks.at(borderDir);
+
+				if (adjacentChunk != nullptr)
+				{
+					bool secOnXBorder = (section->GetPos().x == 8);
+					if (section->GetPos().y >= std::min(GetMinHeight(), m_surroundingChunks.at(borderDir)->GetMinHeight()) - SECTION_SIZE && section->GetPos().y <= std::max(GetMaxHeight(), m_surroundingChunks.at(borderDir)->GetMaxHeight())) section->CreateModel();
+				}
+				else
+				{
+					if (section->GetPos().y >= GetMinHeight() - SECTION_SIZE && section->GetPos().y <= GetMaxHeight()) section->CreateModel();
+				}
+			}
+		}
 	}
+
+	hasModel = true;
 }
 
-void Chunk::LoadSurrounding(const std::vector<std::shared_ptr<ChunkSection> > surroundingSections, int dirIter)
+void Chunk::LoadSurrounding(std::shared_ptr<Chunk> adjacentChunk, int dirIter)
 {
+	m_surroundingChunks.at(dirIter) = adjacentChunk;
+
 	for (auto& section : m_sections)
 	{
 		if (section != nullptr)
@@ -45,8 +78,8 @@ void Chunk::LoadSurrounding(const std::vector<std::shared_ptr<ChunkSection> > su
 				int adjIndex = GetSectionIndex(checkingPos);
 				if (adjIndex != -1)
 				{
-					if (surroundingSections.at(adjIndex) != nullptr)
-						section->LoadSurrounding(surroundingSections.at(adjIndex)->GetBlocks(), dirIter);
+					if (adjacentChunk != nullptr)
+						section->LoadSurrounding(adjacentChunk->GetSections().at(adjIndex)->GetBlocks(), dirIter);
 					else
 						section->LoadSurrounding(nullptr, dirIter);
 				}
@@ -95,7 +128,7 @@ void Chunk::UpdateModel(glm::vec3 pos)
 	}
 }
 
-void Chunk::UpdateSectionModel(glm::vec3 pos, const std::vector<Block>* blocks, int dirIter)
+void Chunk::UpdateSectionModel(glm::vec3 pos, const std::vector<std::shared_ptr<Block> >* blocks, int dirIter)
 {
 	int index = GetSectionIndex(GetSectionCoords(WorldToChunkCoords(pos)));
 
@@ -111,19 +144,49 @@ glm::vec3 Chunk::GetPos() const
 	return m_pos;
 }
 
-Block Chunk::GetBlock(glm::vec3 pos) const
+int Chunk::GetMaxHeight() const
+{
+	return m_populator.GetChunkHeight(0);
+}
+
+int Chunk::GetMinHeight() const
+{
+	return m_populator.GetChunkHeight(1);
+}
+
+int Chunk::GetMaxSectionHeight(glm::vec3 pos) const
+{
+	return m_populator.GetChunkSectionHeight(pos, 0);
+}
+
+int Chunk::GetMinSectionHeight(glm::vec3 pos) const
+{
+	return m_populator.GetChunkSectionHeight(pos, 1);
+}
+
+int Chunk::GetMaxBorderHeight(DirIter dirIter) const
+{
+	return m_populator.GetChunkBorderHeight(dirIter, 0);
+}
+
+int Chunk::GetMinBorderHeight(DirIter dirIter) const
+{
+	return m_populator.GetChunkBorderHeight(dirIter, 1);
+}
+
+std::shared_ptr<Block> Chunk::GetBlock(glm::vec3 pos) const
 {
 	glm::vec3 chunkPos = WorldToChunkCoords(pos);
 	int index = GetSectionIndex(GetSectionCoords(chunkPos));
-	if (m_sections.at(index) == nullptr) return Block(BlockID::Air, glm::vec3(ChunkToWorldCoords(pos)));
+	if (m_sections.at(index) == nullptr) return nullptr;
 
-	Block block = m_sections.at( GetSectionIndex( GetSectionCoords(chunkPos) ) )->GetBlock(chunkPos);
-	block.SetPos( ChunkToWorldCoords(block.GetPos()) );
+	std::shared_ptr<Block> block = m_sections.at( GetSectionIndex( GetSectionCoords(chunkPos) ) )->GetBlock(chunkPos);
+	if (block != nullptr) block->SetPos( ChunkToWorldCoords(block->GetPos()) );
 	
 	return block;
 }
 
-const std::vector<Block>* Chunk::GetSectionBlocks(glm::vec3 pos)
+const std::vector<std::shared_ptr<Block> >* Chunk::GetSectionBlocks(glm::vec3 pos)
 {
 	int index = GetSectionIndex(GetSectionCoords(WorldToChunkCoords(pos)));
 
@@ -132,9 +195,9 @@ const std::vector<Block>* Chunk::GetSectionBlocks(glm::vec3 pos)
 	return m_sections.at( index )->GetBlocks();
 }
 
-std::vector<const std::vector<Block>* >  Chunk::GetBlocks() const
+std::vector<const std::vector<std::shared_ptr<Block> >* >  Chunk::GetBlocks() const
 {
-	std::vector<const std::vector<Block>* > blocks;
+	std::vector<const std::vector<std::shared_ptr<Block> >* > blocks;
 
 	for (auto& section : m_sections)
 	{
@@ -156,6 +219,13 @@ void Chunk::SetBlock(glm::vec3 pos, BlockID id)
 	int index = GetSectionIndex(GetSectionCoords(chunkPos));
 
 	if (m_sections.at( index ) != nullptr) m_sections.at( index )->SetBlock(chunkPos, id);
+}
+
+bool Chunk::HasSurroundingLoadedAt(int dirIter)
+{
+	if (m_surroundingChunks.at(dirIter) != nullptr) return true;
+
+	return false;
 }
 
 void Chunk::MakeSections()

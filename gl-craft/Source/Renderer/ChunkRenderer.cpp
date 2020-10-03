@@ -18,29 +18,32 @@ void ChunkRenderer::DrawQuads(const unsigned int& shaderProgram)
 {
 	while (!m_chunks.empty())
 	{
-		const std::vector<std::shared_ptr<ChunkSection> > tempSections = m_chunks.back()->GetSections();
+		//if (m_chunks.back()->hasModel)
+		//{		
+			const std::vector<std::shared_ptr<ChunkSection> > tempSections = m_chunks.back()->GetSections();
 
-		for (auto& section : tempSections)
-		{
-			if (section != nullptr)
+			for (auto& section : tempSections)
 			{
-				section->Bind();
-
-				glm::mat4 model = glm::mat4(1.0);
-				model = glm::translate(model, m_chunks.back()->GetPos() + section->GetPos());
-
-				int uniModel = glGetUniformLocation(shaderProgram, "model");
-				glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
-
-				std::vector<std::unique_ptr<BlockFace> >* tempFaces = section->GetFaces();
-
-				for (int i = 0; i < tempFaces->size(); i++)
+				if (section != nullptr)
 				{
-					tempFaces->at(i)->m_texture.BindTexture();
-					glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (const void*)(i * 6 * sizeof(unsigned int)));
+					section->Bind();
+
+					glm::mat4 model = glm::mat4(1.0);
+					model = glm::translate(model, m_chunks.back()->GetPos() + section->GetPos());
+
+					int uniModel = glGetUniformLocation(shaderProgram, "model");
+					glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
+
+					std::vector<std::unique_ptr<BlockFace> >* tempFaces = section->GetFaces();
+
+					for (int i = 0; i < tempFaces->size(); i++)
+					{
+						tempFaces->at(i)->m_texture.BindTexture();
+						glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (const void*)(i * 6 * sizeof(unsigned int)));
+					}
 				}
 			}
-		}
+		//}
 
 		m_chunks.pop_back();
 	}

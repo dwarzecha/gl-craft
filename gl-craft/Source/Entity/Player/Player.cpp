@@ -27,7 +27,7 @@ void Player::Init(const Config& config)
 
 void Player::Update(float deltaTime)
 {
-	m_speed = deltaTime * 5.0f;
+	m_speed = deltaTime * 15.0f;
 }
 
 void Player::HandleEvents(const sf::Window& window)
