@@ -1,0 +1,22 @@
+version: 0.1.{build}
+
+only_commits:
+    message: /\[build\]/
+
+image: Visual Studio 2017
+
+platform: x64
+configuration:
+    - Debug
+    - Release
+
+after_build:
+    - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\gl-craft\Res
+    - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\**\*.exe
+
+deploy:
+    description: 'GitHub release'
+    provider: GitHub
+    auth_token:
+        secure: A/tcgrplDHPdwJjG+ONMx7hcoM15nTzNZ3SNAdYAQFGE1F0KAt1ZwBe4X9fzZlzb
+    artifact: gl-craft.zip
