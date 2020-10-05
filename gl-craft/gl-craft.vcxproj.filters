@@ -1,370 +1,343 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Res">
+      <UniqueIdentifier>{2F1D880B-9B26-887C-24A2-9E7C90AA937C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Res\Textures">
+      <UniqueIdentifier>{E23376DC-CE96-0581-771C-3E37635ED103}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Res\Textures\Blocks">
+      <UniqueIdentifier>{6F4A03EF-DBAB-E0FC-6419-27AFD07917BC}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Renderer">
-      <UniqueIdentifier>{792fa6b4-fb07-40be-944d-944095e61d90}</UniqueIdentifier>
+    <Filter Include="Res\Textures\Blocks\Dirt">
+      <UniqueIdentifier>{11BF076D-FDE3-56ED-262F-3C7D12B3550B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Shader">
-      <UniqueIdentifier>{1abe6bf3-c5ec-4261-8408-02661d18cda4}</UniqueIdentifier>
+    <Filter Include="Res\Textures\Blocks\Grass">
+      <UniqueIdentifier>{1E923A0E-8A54-6E98-D304-FD243F064776}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Texture">
-      <UniqueIdentifier>{523dd7aa-d9a4-4c18-b5c5-3fb6014cf406}</UniqueIdentifier>
+    <Filter Include="Res\Textures\Blocks\Stone">
+      <UniqueIdentifier>{C70B150F-33CE-4899-7C7E-D725E87F2177}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Util">
-      <UniqueIdentifier>{34df2491-afe0-4ae0-ac36-6adabb9d8326}</UniqueIdentifier>
+    <Filter Include="Source">
+      <UniqueIdentifier>{56EB95D1-428D-C0A7-2B48-D4FB178947F8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Renderer">
-      <UniqueIdentifier>{a94021a6-d656-4936-bd32-c5219927e004}</UniqueIdentifier>
+    <Filter Include="Source\Application">
+      <UniqueIdentifier>{19D87881-05BC-39D7-6E1C-342A5A1F2459}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shader">
-      <UniqueIdentifier>{d05714b8-283b-4e7d-a380-8faf215db2c1}</UniqueIdentifier>
+    <Filter Include="Source\Application\Context">
+      <UniqueIdentifier>{AD5B8069-996B-2C3A-0225-9158EE531BD3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Texture">
-      <UniqueIdentifier>{c83e98c3-612b-4c51-ba9a-6ecd94dd7d70}</UniqueIdentifier>
+    <Filter Include="Source\Application\GameState">
+      <UniqueIdentifier>{63501E40-4F0B-0EEC-F8C2-8636E45C587C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\World">
-      <UniqueIdentifier>{98c4c760-d8ce-4fa7-9e27-67132c29720b}</UniqueIdentifier>
+    <Filter Include="Source\Config">
+      <UniqueIdentifier>{9B89CE2A-074A-4A61-D084-93DE3C048F3D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\World">
-      <UniqueIdentifier>{20c13113-dd48-4106-93e0-e97bf02ca74d}</UniqueIdentifier>
+    <Filter Include="Source\Controls">
+      <UniqueIdentifier>{39D39919-A55E-07DE-AE6F-8AD21A7A63DE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\World\Chunk">
-      <UniqueIdentifier>{579fefe2-e7b9-45cd-a342-8608cc6878b0}</UniqueIdentifier>
+    <Filter Include="Source\Direction">
+      <UniqueIdentifier>{2681A447-127A-C399-3BAC-A81E2704A3A5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\World\Block">
-      <UniqueIdentifier>{424842f9-126f-4328-8373-bf3754cdd88f}</UniqueIdentifier>
+    <Filter Include="Source\Entity">
+      <UniqueIdentifier>{E21A6A2F-4EDB-E565-1716-2FE383952A42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\World\Chunk">
-      <UniqueIdentifier>{2f171767-acfb-4d7b-aad2-64c5bb319448}</UniqueIdentifier>
+    <Filter Include="Source\Entity\Camera">
+      <UniqueIdentifier>{1A5D3A7B-06EC-C344-AF0A-D83F9B78D4EA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model">
-      <UniqueIdentifier>{a7d6d1b5-c72f-44d7-83ed-330f4123d6c9}</UniqueIdentifier>
+    <Filter Include="Source\Entity\Player">
+      <UniqueIdentifier>{BE394E9A-AAC8-D763-53E7-EB5E3F55E809}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\World\Block">
-      <UniqueIdentifier>{3a89f1f1-f87f-4312-8e35-b83473bcb8c9}</UniqueIdentifier>
+    <Filter Include="Source\Maths">
+      <UniqueIdentifier>{429475F2-2EF7-0497-D77C-3D4DC3BED019}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model">
-      <UniqueIdentifier>{ed30ce9c-2812-4445-a6c1-a4ff3f2e12ea}</UniqueIdentifier>
+    <Filter Include="Source\Mesh">
+      <UniqueIdentifier>{D2E61A0F-3E9C-9304-C790-8DDB33458A08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Textures">
-      <UniqueIdentifier>{224ae345-e8b0-4f56-a3a6-f224e336bf10}</UniqueIdentifier>
+    <Filter Include="Source\Model">
+      <UniqueIdentifier>{16FD7CF2-0260-0C97-ABE5-444D9727D819}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Textures\Blocks">
-      <UniqueIdentifier>{c282ccdb-5226-42af-be00-ece467a628cc}</UniqueIdentifier>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{BC4F86EE-28DB-F3B2-31EC-76A79DF64FB3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Textures\Blocks\Grass">
-      <UniqueIdentifier>{90e1d847-0d31-44cd-86ec-56a0ccdeeee7}</UniqueIdentifier>
+    <Filter Include="Source\Shader">
+      <UniqueIdentifier>{3C3E9B4F-A8FE-1686-7139-6003DDB85B62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Direction">
-      <UniqueIdentifier>{76ecc1a3-2e14-48f9-8c84-137dda430874}</UniqueIdentifier>
+    <Filter Include="Source\Texture">
+      <UniqueIdentifier>{B606A78A-A2D4-9A90-8B68-0BB777D576F5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Direction">
-      <UniqueIdentifier>{0714df4a-dab1-4028-b1a4-b744448bc6ff}</UniqueIdentifier>
+    <Filter Include="Source\Util">
+      <UniqueIdentifier>{63881F0F-CF3D-9804-5832-92DBC4E68E08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Mesh">
-      <UniqueIdentifier>{e37e9612-85a6-4ab5-b76e-83954a883522}</UniqueIdentifier>
+    <Filter Include="Source\World">
+      <UniqueIdentifier>{8D2E32F3-7991-C197-2217-FA4D0E598D1A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Application">
-      <UniqueIdentifier>{8750e48c-6d71-4619-99ab-0f3e7cddd803}</UniqueIdentifier>
+    <Filter Include="Source\World\Block">
+      <UniqueIdentifier>{6709FADF-53ED-BA35-BC4D-B588A850A5B7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Application">
-      <UniqueIdentifier>{3190f54d-46f7-4e72-8bdc-e8270a748f7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Application\GameState">
-      <UniqueIdentifier>{fed7e1d4-48b1-40b0-98ec-e3ffffd3691f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Application\GameState">
-      <UniqueIdentifier>{09e5b2d4-8a13-4614-894d-0d6719fd0b44}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Application\Context">
-      <UniqueIdentifier>{d6d83a67-7a83-4894-9625-093dfcd99d95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Application\Context">
-      <UniqueIdentifier>{1aafbe8c-6bc8-4042-aa4b-ea99184dd2f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Entity">
-      <UniqueIdentifier>{85b5090b-17a3-4bca-abfc-0bcb4ed4fd02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Entity\Player">
-      <UniqueIdentifier>{5bbadccb-e2cc-4e67-8479-77b6df7cf156}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Entity\Camera">
-      <UniqueIdentifier>{2172a70d-ca46-4af3-bf16-bed1aa4005fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entity">
-      <UniqueIdentifier>{88ab876e-1756-4b22-b503-898f8d59b7c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entity\Player">
-      <UniqueIdentifier>{4b56a0c0-a551-4abe-859b-e61892f5565f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entity\Camera">
-      <UniqueIdentifier>{7d298c89-d86b-4776-b916-7b01f81a6f74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Maths">
-      <UniqueIdentifier>{21c862ae-1b3e-4667-a648-362009e06a1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Maths">
-      <UniqueIdentifier>{5fbd1258-9f05-4158-956c-e0dd38ccfbf7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Config">
-      <UniqueIdentifier>{c388d42b-38e8-463f-a204-4888da73ec6a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Textures\Blocks\Stone">
-      <UniqueIdentifier>{84475b0a-6930-40ff-8aae-d814023bc90a}</UniqueIdentifier>
+    <Filter Include="Source\World\Chunk">
+      <UniqueIdentifier>{550B0AE0-41EF-CA35-AA4F-C5889652B5B7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Model\Model.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Shader\Shader.cpp">
-      <Filter>Source Files\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Shader\BasicShader.cpp">
-      <Filter>Source Files\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Texture\BasicTexture.cpp">
-      <Filter>Source Files\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\Block\Block.cpp">
-      <Filter>Source Files\World\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Texture\TexturePaths.cpp">
-      <Filter>Source Files\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\World.cpp">
-      <Filter>Source Files\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Direction\Direction.cpp">
-      <Filter>Source Files\Direction</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Renderer\ChunkRenderer.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\Chunk\Chunk.cpp">
-      <Filter>Source Files\World\Chunk</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\Block\BlockMesh.cpp">
-      <Filter>Source Files\World\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Application\Application.cpp">
-      <Filter>Source Files\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Application\Context\Context.cpp">
-      <Filter>Source Files\Application\Context</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Application\GameState\PlayingState.cpp">
-      <Filter>Source Files\Application\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Renderer\RenderMaster.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Application\GameState\StateManager.cpp">
-      <Filter>Source Files\Application\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity\Camera\Camera.cpp">
-      <Filter>Source Files\Entity\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity\Player\Player.cpp">
-      <Filter>Source Files\Entity\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Maths\Matrix.cpp">
-      <Filter>Source Files\Maths</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\ChunkManager.cpp">
-      <Filter>Source Files\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Maths\Ray.cpp">
-      <Filter>Source Files\Maths</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\Chunk\ChunkSection.cpp">
-      <Filter>Source Files\World\Chunk</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\Chunk\ChunkModelGenerator.cpp">
-      <Filter>Source Files\World\Chunk</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\WorldGenerator.cpp">
-      <Filter>Source Files\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Maths\Perlin.cpp">
-      <Filter>Source Files\Maths</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\World\Chunk\ChunkPopulator.cpp">
-      <Filter>Source Files\World\Chunk</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Model\Model.hpp">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Renderer\RenderMaster.hpp">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Shader\BasicShader.hpp">
-      <Filter>Header Files\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Shader\Shader.hpp">
-      <Filter>Header Files\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Shader\ShaderLoader.hpp">
-      <Filter>Header Files\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Shader\ShaderSource.hpp">
-      <Filter>Header Files\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Texture\BasicTexture.hpp">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Util\NonCopyable.hpp">
-      <Filter>Header Files\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\Block\Block.hpp">
-      <Filter>Header Files\World\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\Block\BlockID.hpp">
-      <Filter>Header Files\World\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\Block\BlockFace.hpp">
-      <Filter>Header Files\World\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Texture\TexturePaths.hpp">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\World.hpp">
-      <Filter>Header Files\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Direction\Direction.hpp">
-      <Filter>Header Files\Direction</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Renderer\ChunkRenderer.hpp">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\Chunk\Chunk.hpp">
-      <Filter>Header Files\World\Chunk</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\Block\BlockMesh.hpp">
-      <Filter>Header Files\World\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Application\GameState\GameState.hpp">
-      <Filter>Header Files\Application\GameState</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Application\Application.hpp">
-      <Filter>Header Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mesh\Mesh.hpp">
-      <Filter>Header Files\Mesh</Filter>
+      <Filter>Source\Application</Filter>
     </ClInclude>
     <ClInclude Include="Source\Application\Context\Context.hpp">
-      <Filter>Header Files\Application\Context</Filter>
+      <Filter>Source\Application\Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Application\GameState\GameState.hpp">
+      <Filter>Source\Application\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Source\Application\GameState\PlayingState.hpp">
-      <Filter>Header Files\Application\GameState</Filter>
+      <Filter>Source\Application\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Source\Application\GameState\StateManager.hpp">
-      <Filter>Header Files\Application\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity\Camera\Camera.hpp">
-      <Filter>Header Files\Entity\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity\Player\Player.hpp">
-      <Filter>Header Files\Entity\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity\Entity.hpp">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Maths\Matrix.hpp">
-      <Filter>Header Files\Maths</Filter>
+      <Filter>Source\Application\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Source\Config\Config.hpp">
-      <Filter>Header Files\Config</Filter>
+      <Filter>Source\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Controls\Controls.hpp">
+      <Filter>Source\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Direction\Direction.hpp">
+      <Filter>Source\Direction</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity\Camera\Camera.hpp">
+      <Filter>Source\Entity\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity\Entity.hpp">
+      <Filter>Source\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Source\Entity\Player\MouseParams.hpp">
-      <Filter>Header Files\Entity\Player</Filter>
+      <Filter>Source\Entity\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Source\World\ChunkManager.hpp">
-      <Filter>Header Files\World</Filter>
+    <ClInclude Include="Source\Entity\Player\Player.hpp">
+      <Filter>Source\Entity\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\Ray.hpp">
-      <Filter>Header Files\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\WorldConstants.hpp">
-      <Filter>Header Files\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\Chunk\ChunkModelGenerator.hpp">
-      <Filter>Header Files\World\Chunk</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\World\WorldGenerator.hpp">
-      <Filter>Header Files\World</Filter>
+    <ClInclude Include="Source\Maths\Matrix.hpp">
+      <Filter>Source\Maths</Filter>
     </ClInclude>
     <ClInclude Include="Source\Maths\Perlin.hpp">
-      <Filter>Header Files\Maths</Filter>
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\Ray.hpp">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mesh\Mesh.hpp">
+      <Filter>Source\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\Model.hpp">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\ChunkRenderer.hpp">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\RenderMaster.hpp">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shader\BasicShader.hpp">
+      <Filter>Source\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shader\Shader.hpp">
+      <Filter>Source\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shader\ShaderLoader.hpp">
+      <Filter>Source\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shader\ShaderSource.hpp">
+      <Filter>Source\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Texture\BasicTexture.hpp">
+      <Filter>Source\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Texture\TexturePaths.hpp">
+      <Filter>Source\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\NonCopyable.hpp">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\Block\Block.hpp">
+      <Filter>Source\World\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\Block\BlockFace.hpp">
+      <Filter>Source\World\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\Block\BlockID.hpp">
+      <Filter>Source\World\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\Block\BlockMesh.hpp">
+      <Filter>Source\World\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\Chunk\Chunk.hpp">
+      <Filter>Source\World\Chunk</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\Chunk\ChunkModelGenerator.hpp">
+      <Filter>Source\World\Chunk</Filter>
     </ClInclude>
     <ClInclude Include="Source\World\Chunk\ChunkPopulator.hpp">
-      <Filter>Header Files\World\Chunk</Filter>
+      <Filter>Source\World\Chunk</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\Chunk\ChunkSection.hpp">
+      <Filter>Source\World\Chunk</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\ChunkManager.hpp">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\World.hpp">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\WorldConstants.hpp">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World\WorldGenerator.hpp">
+      <Filter>Source\World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Application\Application.cpp">
+      <Filter>Source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\Context\Context.cpp">
+      <Filter>Source\Application\Context</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\GameState\PlayingState.cpp">
+      <Filter>Source\Application\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\GameState\StateManager.cpp">
+      <Filter>Source\Application\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Direction\Direction.cpp">
+      <Filter>Source\Direction</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity\Camera\Camera.cpp">
+      <Filter>Source\Entity\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity\Player\Player.cpp">
+      <Filter>Source\Entity\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Maths\Matrix.cpp">
+      <Filter>Source\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Maths\Perlin.cpp">
+      <Filter>Source\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Maths\Ray.cpp">
+      <Filter>Source\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\Model.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\ChunkRenderer.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\RenderMaster.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shader\BasicShader.cpp">
+      <Filter>Source\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shader\Shader.cpp">
+      <Filter>Source\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Source.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Texture\BasicTexture.cpp">
+      <Filter>Source\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Texture\TexturePaths.cpp">
+      <Filter>Source\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\Block\Block.cpp">
+      <Filter>Source\World\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\Block\BlockMesh.cpp">
+      <Filter>Source\World\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\Chunk\Chunk.cpp">
+      <Filter>Source\World\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\Chunk\ChunkModelGenerator.cpp">
+      <Filter>Source\World\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\Chunk\ChunkPopulator.cpp">
+      <Filter>Source\World\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\Chunk\ChunkSection.cpp">
+      <Filter>Source\World\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\ChunkManager.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\World.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World\WorldGenerator.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\BlockDatabase.txt">
+      <Filter>Res</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\Textures\Blocks\Dirt\Bottom.png">
+      <Filter>Res\Textures\Blocks\Dirt</Filter>
+    </Image>
+    <Image Include="Res\Textures\Blocks\Dirt\Side1.png">
+      <Filter>Res\Textures\Blocks\Dirt</Filter>
+    </Image>
+    <Image Include="Res\Textures\Blocks\Dirt\Side2.png">
+      <Filter>Res\Textures\Blocks\Dirt</Filter>
+    </Image>
+    <Image Include="Res\Textures\Blocks\Dirt\Side3.png">
+      <Filter>Res\Textures\Blocks\Dirt</Filter>
+    </Image>
+    <Image Include="Res\Textures\Blocks\Dirt\Side4.png">
+      <Filter>Res\Textures\Blocks\Dirt</Filter>
+    </Image>
+    <Image Include="Res\Textures\Blocks\Dirt\Top.png">
+      <Filter>Res\Textures\Blocks\Dirt</Filter>
+    </Image>
     <Image Include="Res\Textures\Blocks\Grass\Bottom.png">
-      <Filter>Resource Files\Textures\Blocks\Grass</Filter>
+      <Filter>Res\Textures\Blocks\Grass</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Grass\Side1.png">
-      <Filter>Resource Files\Textures\Blocks\Grass</Filter>
+      <Filter>Res\Textures\Blocks\Grass</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Grass\Side2.png">
-      <Filter>Resource Files\Textures\Blocks\Grass</Filter>
+      <Filter>Res\Textures\Blocks\Grass</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Grass\Side3.png">
-      <Filter>Resource Files\Textures\Blocks\Grass</Filter>
+      <Filter>Res\Textures\Blocks\Grass</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Grass\Side4.png">
-      <Filter>Resource Files\Textures\Blocks\Grass</Filter>
+      <Filter>Res\Textures\Blocks\Grass</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Grass\Top.png">
-      <Filter>Resource Files\Textures\Blocks\Grass</Filter>
+      <Filter>Res\Textures\Blocks\Grass</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Stone\Bottom.png">
-      <Filter>Resource Files\Textures\Blocks\Stone</Filter>
+      <Filter>Res\Textures\Blocks\Stone</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Stone\Side1.png">
-      <Filter>Resource Files\Textures\Blocks\Stone</Filter>
+      <Filter>Res\Textures\Blocks\Stone</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Stone\Side2.png">
-      <Filter>Resource Files\Textures\Blocks\Stone</Filter>
+      <Filter>Res\Textures\Blocks\Stone</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Stone\Side3.png">
-      <Filter>Resource Files\Textures\Blocks\Stone</Filter>
+      <Filter>Res\Textures\Blocks\Stone</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Stone\Side4.png">
-      <Filter>Resource Files\Textures\Blocks\Stone</Filter>
+      <Filter>Res\Textures\Blocks\Stone</Filter>
     </Image>
     <Image Include="Res\Textures\Blocks\Stone\Top.png">
-      <Filter>Resource Files\Textures\Blocks\Stone</Filter>
+      <Filter>Res\Textures\Blocks\Stone</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="TODO.txt" />
-    <Text Include="Res\BlockDatabase.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Source\World\Chunk\ChunkSection.hpp">
-      <Filter>Header Files\World\Chunk</Filter>
-    </None>
   </ItemGroup>
 </Project>

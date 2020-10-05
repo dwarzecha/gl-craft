@@ -14,7 +14,7 @@ configuration:
 
 after_build:
     - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\gl-craft\Res
-    - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\bin\**\*.exe
+    - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\bin\Release-windows-x86_64\gl-craft\gl-craft.exe
 
 deploy:
     description: 'GitHub release'
