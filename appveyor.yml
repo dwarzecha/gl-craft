@@ -23,9 +23,13 @@ for:
       - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\gl-craft\Res
       - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\bin\Release-windows-x86_64\gl-craft\gl-craft.exe
 
+    artifacts:
+        - path: gl-craft.zip
+          name: gl-craft
+
     deploy:
       description: 'GitHub release'
       provider: GitHub
       auth_token:
         secure: A/tcgrplDHPdwJjG+ONMx7hcoM15nTzNZ3SNAdYAQFGE1F0KAt1ZwBe4X9fzZlzb
-      artifact: gl-craft.zip
+      artifact: gl-craft
