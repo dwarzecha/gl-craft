@@ -13,7 +13,7 @@ configuration:
   - Release
 
 before_build: 
-  - cmd: vendor/bin/premake/premake5.exe vs2017
+  - cmd: $(APPVEYOR_BUILD_FOLDER)\vendor\bin\premake\premake5.exe vs2017
 
 for:
   -
