@@ -12,6 +12,8 @@ configuration:
   - Debug
   - Release
 
+before_build: 
+  - cmd: vendor\bin\premake\premake5.exe vs2017
 
 for:
   -
