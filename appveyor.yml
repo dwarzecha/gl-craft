@@ -13,7 +13,7 @@ configuration:
   - Release
 
 before_build: 
-  - cmd: $(APPVEYOR_BUILD_FOLDER)\vendor\bin\premake\premake5.exe vs2017
+  - cmd: c:\projects\gl-craft\vendor\bin\premake\premake5.exe vs2017
 
 for:
   -
@@ -22,8 +22,8 @@ for:
         - configuration: Release
 
     after_build:
-      - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\gl-craft\Res
-      - cmd: 7z a gl-craft.zip %APPVEYOR_BUILD_FOLDER%\bin\Release-windows-x86_64\gl-craft\gl-craft.exe
+      - cmd: 7z a gl-craft.zip c:\projects\gl-craft\gl-craft\Res
+      - cmd: 7z a gl-craft.zip c:\projects\gl-craft\bin\Release-windows-x86_64\gl-craft\gl-craft.exe
 
     artifacts:
         - path: gl-craft.zip
