@@ -154,8 +154,17 @@ const std::vector<std::shared_ptr<Block> >* ChunkModelGenerator::GetBlocks() con
 
 void ChunkModelGenerator::SetBlock(glm::vec3 pos, BlockID id)
 {
-	if (id == BlockID::Air) m_blocks.at(GetIndex(pos)) = nullptr;
-	else m_blocks.at(GetIndex(pos))->SetID(id);
+	std::shared_ptr<Block>* block = &m_blocks.at(GetIndex(pos));
+
+	if (*block != nullptr)
+	{
+		if (id == BlockID::Air) *block = nullptr;
+		else (*block)->SetID(id);
+	}
+	else
+	{
+		*block = std::make_shared<Block>(id, pos);
+	}
 }
 
 void ChunkModelGenerator::SetSize(int size)

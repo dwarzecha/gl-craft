@@ -4,8 +4,8 @@
 
 #include <algorithm>
 
-ChunkPopulator::ChunkPopulator(std::vector<std::shared_ptr<ChunkSection> >* sections)
-	: m_sections(sections)
+ChunkPopulator::ChunkPopulator(/*std::vector<std::shared_ptr<ChunkSection> >* sections*/)
+	//: m_sections(sections)
 {
 }
 
@@ -14,9 +14,9 @@ void ChunkPopulator::LoadData(std::vector<double> heightMap)
 	m_heightMap = heightMap;
 }
 
-void ChunkPopulator::Populate()
+void ChunkPopulator::Populate(std::vector<std::shared_ptr<ChunkSection> >* sections)
 {
-	for (auto& section : *m_sections)
+	for (auto& section : *sections)
 	{
 		bool sectionEmpty = true;
 
@@ -54,6 +54,25 @@ void ChunkPopulator::Populate()
 					section->AddBlock(nullptr);
 			}
 		}
+	}
+}
+
+void ChunkPopulator::PopulateSection(std::shared_ptr<ChunkSection> section)
+{
+	for (int i = 0; i < SECTION_SIZE; i++)
+	for (int j = 0; j < SECTION_SIZE; j++)
+	for (int k = 0; k < SECTION_SIZE; k++)
+	{
+		double currentHeight = 64 + m_heightMap.at((section->GetPos().x + i) * CHUNK_SIZE + (section->GetPos().z + k));
+
+		if (section->GetPos().y + j < currentHeight - 4)
+			section->AddBlock(std::make_unique<Block>(BlockID::Stone, glm::vec3(i, j, k)));
+		else if (section->GetPos().y + j < currentHeight - 1)
+			section->AddBlock(std::make_unique<Block>(BlockID::Dirt, glm::vec3(i, j, k)));
+		else if (section->GetPos().y + j < currentHeight)
+			section->AddBlock(std::make_unique<Block>(BlockID::Grass, glm::vec3(i, j, k)));
+		else
+			section->AddBlock(nullptr);
 	}
 }
 

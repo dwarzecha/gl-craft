@@ -2,6 +2,7 @@
 #define PERLIN_HPP_INCLUDED
 
 #include <array>
+#include <tuple>
 
 namespace Perlin
 {

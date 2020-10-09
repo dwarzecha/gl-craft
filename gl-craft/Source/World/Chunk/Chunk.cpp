@@ -6,7 +6,7 @@
 #include "../../Direction/Direction.hpp"
 
 Chunk::Chunk(glm::vec3 pos)
-	: m_pos(pos), m_populator(&m_sections)
+	: m_pos(pos)//, m_populator(&m_sections)
 {
 	for (int i = 0; i < 6; i++)
 	{
@@ -19,7 +19,7 @@ Chunk::Chunk(glm::vec3 pos)
 void Chunk::Populate(std::vector<double> heightMap)
 {
 	m_populator.LoadData(heightMap);
-	m_populator.Populate();
+	m_populator.Populate(&m_sections);
 }
 
 void Chunk::CreateModel()

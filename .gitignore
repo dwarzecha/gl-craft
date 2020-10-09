@@ -1,6 +1,6 @@
 .vs/
 Debug/
-bin/
+/bin/
 bin-int/
 
 *.sln

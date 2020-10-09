@@ -1,7 +1,7 @@
 #include "Perlin.hpp"
 
-#include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 namespace Perlin
 {

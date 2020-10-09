@@ -7,9 +7,10 @@
 class ChunkPopulator
 {
 public:
-	ChunkPopulator(std::vector<std::shared_ptr<ChunkSection> >* sections);
+	ChunkPopulator(/*std::vector<std::shared_ptr<ChunkSection> >* sections*/);
 	void LoadData(std::vector<double> heightMap);
-	void Populate();
+	void Populate(std::vector<std::shared_ptr<ChunkSection> >* sections);
+	void PopulateSection(std::shared_ptr<ChunkSection> section);
 
 	int GetChunkHeight(int maxOrMin) const;
 	int GetChunkSectionHeight(glm::vec3 pos, int maxOrMin) const;
