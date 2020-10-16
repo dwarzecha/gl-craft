@@ -21,20 +21,15 @@ public:
 	void LoadSurrounding(std::shared_ptr<Chunk> adjacentChunk, int dirIter);
 
 	void UpdateModel(glm::vec3 pos);
-	void UpdateSectionModel(glm::vec3 pos, const std::vector<std::shared_ptr<Block> >* blocks, int dirIter);
+	void UpdateSectionModel(glm::vec3 pos, const std::shared_ptr<ChunkSection> section, int dirIter);
 
 	glm::vec3 GetPos() const;
 
 	int GetMaxHeight() const;
 	int GetMinHeight() const;
-	int GetMaxSectionHeight(glm::vec3 pos) const;
-	int GetMinSectionHeight(glm::vec3 pos) const;
-	int GetMaxBorderHeight(DirIter dirIter) const;
-	int GetMinBorderHeight(DirIter dirIter) const;
 
 	std::shared_ptr<Block> GetBlock(glm::vec3 pos) const;
-	const std::vector<std::shared_ptr<Block> >* GetSectionBlocks(glm::vec3 pos);
-	std::vector<const std::vector<std::shared_ptr<Block> >* > GetBlocks() const;
+	const std::shared_ptr<ChunkSection> GetSection(glm::vec3 pos);
 	const std::vector<std::shared_ptr<ChunkSection> > GetSections() const;
 
 	bool HasSurroundingLoadedAt(int dirIter);

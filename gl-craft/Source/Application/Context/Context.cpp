@@ -12,8 +12,14 @@ Context::Context(std::string name)
 
 	window.create(sf::VideoMode(800, 600), name, sf::Style::Titlebar | sf::Style::Close, settings);
 	window.setVerticalSyncEnabled(true);
-	window.setMouseCursorGrabbed(true);
-	window.setMouseCursorVisible(false);
+	
+	#ifdef LINUX_DEBUG
+		window.setMouseCursorGrabbed(false);
+		window.setMouseCursorVisible(true);
+	#else
+		window.setMouseCursorGrabbed(true);
+		window.setMouseCursorVisible(false);
+	#endif // LINUX_DEBUG
 
 	glewExperimental = GL_TRUE;
 	glewInit();

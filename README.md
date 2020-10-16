@@ -18,7 +18,7 @@ gl-craft uses [Premake](https://premake.github.io/) as its build system, to gene
 ### Windows
 As all the dependencies are included in the project folder, the only necessary step is to run
 ```
-vendor/bin/premake/premake5.exe vs2017
+vendor/bin/premake/premake5_win.exe vs2017
 ```
 
 in the root directory. This will generate a Visual Studio 2017 solution file, which can be used to compile the application.
@@ -38,5 +38,5 @@ sudo apt-get install libglew-dev libglm-dev
 
 Then Makefiles can be generated using Premake, and compiled
 ```
-vendor/bin/premake/premake5 gmake2
+vendor/bin/premake/premake5_linux gmake2
 ```

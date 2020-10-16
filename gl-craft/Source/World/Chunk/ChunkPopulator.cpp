@@ -18,42 +18,48 @@ void ChunkPopulator::Populate(std::vector<std::shared_ptr<ChunkSection> >* secti
 {
 	for (auto& section : *sections)
 	{
+		/*
+		for (int i = section->GetPos().x; i < SECTION_SIZE + section->GetPos().x; i++)
+		for (int j = section->GetPos().z; j < SECTION_SIZE + section->GetPos().z; j++)
+		for (int k = section->GetPos().y; k < SECTION_SIZE + section->GetPos().y; k++)
+		{
+			BlockID id = m_blockMap.at(i * CHUNK_HEIGHT * CHUNK_SIZE + j * CHUNK_HEIGHT + k);
+
+			if (id == BlockID::Air) section->AddBlock(nullptr);
+			else section->AddBlock(std::make_unique<Block>(id, glm::vec3(i, j, k)));
+		}
+		*/
+
+		
 		bool sectionEmpty = true;
+		bool sectionNotRendered = true;
 
 		for (int i = 0; i < SECTION_SIZE; i++)
 		for (int j = 0; j < SECTION_SIZE; j++)
 		{
 			if (section->GetPos().y < 64 + m_heightMap.at((section->GetPos().x + i) * CHUNK_SIZE + (section->GetPos().z + j)))
 				sectionEmpty = false;
+
+			if (section->GetPos().y >= 64 - SECTION_SIZE + m_heightMap.at((section->GetPos().x + i) * CHUNK_SIZE + (section->GetPos().z + j)))
+				sectionNotRendered = false;
 		}
 
 		if (sectionEmpty)
 		{
-			//section = nullptr;
-
 			for (int i = 0; i < SECTION_SIZE; i++)
 			for (int j = 0; j < SECTION_SIZE; j++)
 			for (int k = 0; k < SECTION_SIZE; k++)
 				section->AddBlock(nullptr);
 		}
+		else if (sectionNotRendered)
+		{
+			section = nullptr;
+		}
 		else
 		{
-			for (int i = 0; i < SECTION_SIZE; i++)
-			for (int j = 0; j < SECTION_SIZE; j++)
-			for (int k = 0; k < SECTION_SIZE; k++)
-			{
-				double currentHeight = 64 + m_heightMap.at((section->GetPos().x + i) * CHUNK_SIZE + (section->GetPos().z + k));
-
-				if (section->GetPos().y + j < currentHeight - 4)
-					section->AddBlock(std::make_unique<Block>(BlockID::Stone, glm::vec3(i, j, k)));
-				else if (section->GetPos().y + j < currentHeight - 1)
-					section->AddBlock(std::make_unique<Block>(BlockID::Dirt, glm::vec3(i, j, k)));
-				else if (section->GetPos().y + j < currentHeight)
-					section->AddBlock(std::make_unique<Block>(BlockID::Grass, glm::vec3(i, j, k)));
-				else
-					section->AddBlock(nullptr);
-			}
+			PopulateSection(section);
 		}
+		
 	}
 }
 

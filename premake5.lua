@@ -35,7 +35,7 @@ project "gl-craft"
 		{
 			"GLEW_STATIC",
 			"SFML_STATIC",
-			"_MBCS"
+			--"_MBCS"
 		}
 
 		includedirs
@@ -103,6 +103,9 @@ project "gl-craft"
 			"vorbis",
 			"ogg"
 		}
+
+	filter { "configurations:Debug", "system:linux" }
+		defines { "LINUX_DEBUG" }
 
 	filter "configurations:Release"
 		optimize "Speed"

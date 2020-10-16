@@ -18,6 +18,7 @@ public:
 
 private:
 	std::vector<double> m_heightMap;
+	std::vector<BlockID> m_blockMap;
 	std::vector<std::shared_ptr<ChunkSection> >* m_sections;
 };
 

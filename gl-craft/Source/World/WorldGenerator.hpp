@@ -4,6 +4,7 @@
 #include <map>
 
 #include "../Maths/Perlin.hpp"
+#include "Block/BlockID.hpp"
 
 class WorldGenerator
 {
@@ -16,6 +17,7 @@ public:
 
 private:
 	std::map<Perlin::Vector2D, double> m_heightMap;
+
 	std::map<Perlin::Vector2D, Perlin::Vector2D> m_gradients;
 	int m_gridSize;
 };

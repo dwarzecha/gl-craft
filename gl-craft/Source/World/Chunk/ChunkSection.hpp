@@ -14,7 +14,8 @@ public:
 
 	void AddBlock(std::shared_ptr<Block> block);
 
-	void LoadSurrounding(const std::vector<std::shared_ptr<Block> >* surroundingBlocks, int dirIter);
+	//void LoadSurrounding(const std::vector<std::shared_ptr<Block> >* surroundingBlocks, int dirIter);
+	void LoadSurrounding(const std::shared_ptr<ChunkSection> surroundingSection, int dirIter);
 
 	void CreateModel();
 	void Bind();

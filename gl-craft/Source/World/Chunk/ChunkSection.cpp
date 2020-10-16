@@ -14,9 +14,10 @@ void ChunkSection::AddBlock(std::shared_ptr<Block> block)
 	m_generator.AddBlock(block);
 }
 
-void ChunkSection::LoadSurrounding(const std::vector<std::shared_ptr<Block> >* surroundingBlocks, int dirIter)
+void ChunkSection::LoadSurrounding(const std::shared_ptr<ChunkSection> surroundingSection, int dirIter)
 {
-	m_generator.LoadSurrounding(surroundingBlocks, dirIter);
+	if (surroundingSection == nullptr)	m_generator.LoadSurrounding(nullptr, dirIter);
+	else m_generator.LoadSurrounding(surroundingSection->GetBlocks(), dirIter);
 }
 
 void ChunkSection::CreateModel()

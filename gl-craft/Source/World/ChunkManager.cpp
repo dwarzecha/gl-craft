@@ -69,13 +69,22 @@ void ChunkManager::UpdateModels(glm::vec3 pos)
 	if (chunkPos.z < 0.0f) chunkPos.z += CHUNK_SIZE;
 
 	glm::vec3 chunkCoords = GetChunkCoords(pos);
-
+	/*
+	for (int i = 0; i < SECTION_SIZE; i++)
+	for (int j = 0; j < SECTION_SIZE; j++)
+	{
+		if (pos.y < 64 + m_heightMap.at(Perlin::Vector2D(pos.x, pos.z)) && static_cast<int>(pos.y) % SECTION_SIZE == 0)
+		{
+			m_chunks.at(GetChunkIndex(chunkCoords))->PopulateSection(glm::vec3(pos.x, pos.y - 1, pos.z));
+		}
+	}
+	*/
 	if (chunkPos.x == 0.0f/* && pos.x != 0.0f*/)
 	{
 		int index = GetChunkIndex(GetChunkCoords(pos + Direction::left));
 
 		if (index != -1)
-			m_chunks.at(index)->UpdateSectionModel(pos + Direction::left, m_chunks.at(GetChunkIndex(chunkCoords))->GetSectionBlocks(pos), 3);
+			m_chunks.at(index)->UpdateSectionModel(pos + Direction::left, m_chunks.at(GetChunkIndex(chunkCoords))->GetSection(pos), 3);
 	}
 
 	if (chunkPos.z == 0.0f/* && pos.z != 0.0f*/)
@@ -83,7 +92,7 @@ void ChunkManager::UpdateModels(glm::vec3 pos)
 		int index = GetChunkIndex(GetChunkCoords(pos + Direction::front));
 
 		if (index != -1)
-			m_chunks.at(index)->UpdateSectionModel(pos + Direction::front, m_chunks.at(GetChunkIndex(chunkCoords))->GetSectionBlocks(pos), 1);
+			m_chunks.at(index)->UpdateSectionModel(pos + Direction::front, m_chunks.at(GetChunkIndex(chunkCoords))->GetSection(pos), 1);
 	}
 
 	if (chunkPos.x == CHUNK_SIZE - 1/* && pos.x != WORLD_SIZE - 1*/)
@@ -91,7 +100,7 @@ void ChunkManager::UpdateModels(glm::vec3 pos)
 		int index = GetChunkIndex(GetChunkCoords(pos + Direction::right));
 
 		if (index != -1)
-			m_chunks.at(index)->UpdateSectionModel(pos + Direction::right, m_chunks.at(GetChunkIndex(chunkCoords))->GetSectionBlocks(pos), 2);
+			m_chunks.at(index)->UpdateSectionModel(pos + Direction::right, m_chunks.at(GetChunkIndex(chunkCoords))->GetSection(pos), 2);
 	}
 
 	if (chunkPos.z == CHUNK_SIZE - 1/* && pos.z != WORLD_SIZE - 1*/)
@@ -99,7 +108,7 @@ void ChunkManager::UpdateModels(glm::vec3 pos)
 		int index = GetChunkIndex(GetChunkCoords(pos + Direction::back));
 
 		if (index != -1)
-			m_chunks.at(index)->UpdateSectionModel(pos + Direction::back, m_chunks.at(GetChunkIndex(chunkCoords))->GetSectionBlocks(pos), 0);
+			m_chunks.at(index)->UpdateSectionModel(pos + Direction::back, m_chunks.at(GetChunkIndex(chunkCoords))->GetSection(pos), 0);
 	}
 
 	m_chunks.at( GetChunkIndex( GetChunkCoords(pos) ) )->UpdateModel(pos);

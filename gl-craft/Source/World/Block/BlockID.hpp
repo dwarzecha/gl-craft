@@ -9,4 +9,10 @@ enum class BlockID
 	Stone = 2
 };
 
+struct cmpBlockID {
+	bool operator()(const BlockID& a, const BlockID& b) const {
+		return static_cast<int>(a) < static_cast<int>(b);
+	}
+};
+
 #endif // BLOCKID_HPP_INCLUDED

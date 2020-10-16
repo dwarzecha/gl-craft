@@ -95,12 +95,7 @@ bool ChunkModelGenerator::CheckBlock(std::shared_ptr<Block> b, int dirIter)
 		if ((pos + dir).y > static_cast<float>(m_size) - 1.0f) pos.y = 0.0f;
 		if ((pos + dir).z > static_cast<float>(m_size) - 1.0f) pos.z = 0.0f;
 
-		//if (blocks == nullptr && dirIter != 4)
-		//{
-		//	return false;
-		//}
-
-		if (blocks == nullptr ||
+		if (blocks != nullptr &&
 			(blocks->at(GetIndex(pos)) == nullptr || blocks->at(GetIndex(pos))->GetOpacity() != 1.0f))
 		{
 			return true;
